@@ -4,19 +4,19 @@ USE CINEMA
 GO
 CREATE TABLE HangSX(
 	MaHangSX varchar(10) not null,
-	TenHangSX VARCHAR(20),
+	TenHangSX NVARCHAR(20),
 	CONSTRAINT PF_HangSX PRIMARY KEY (MaHangSX)
 );
 
 CREATE TABLE NuocSX(
 	MaNuocSX varchar(10) not null,
-	TenNuocSX VARCHAR(20),
+	TenNuocSX NVARCHAR(20),
 	CONSTRAINT PF_NuocSX PRIMARY KEY (MaNuocSX)
 );
 
 CREATE TABLE TheLoai(
 	MaTheLoai varchar(10) not null,
-	TenTheLoai varchar(20),
+	TenTheLoai nvarchar(20),
 	CONSTRAINT PF_TheLoai PRIMARY KEY (MaTheLoai)
 );
 
@@ -27,8 +27,8 @@ CREATE TABLE Phim(
 	MaHangSX VARCHAR(10) NOT NULL,
 	DaoDien VARCHAR(20),
 	MaTheLoai VARCHAR(10) NOT NULL,
-	NgayKhoiChieu DATE,
-	NgayKetThuc DATE,
+	NgayKhoiChieu SMALLDATETIME,
+	NgayKetThuc SMALLDATETIME,
 	NoiDungChinh text,
 	TongChiPhi bigint,
 	TongThu bigint,
@@ -40,8 +40,8 @@ CREATE TABLE Phim(
 
 CREATE TABLE RAP(
 	MaRap varchar(10) not null,
-	TenRap varchar(50),
-	DiaChi varchar(100),
+	TenRap nvarchar(50),
+	DiaChi nvarchar(100),
 	DienThoai varchar(10),
 	SoPhong varchar(10),
 	TongSoGhe int,
@@ -50,7 +50,7 @@ CREATE TABLE RAP(
 CREATE TABLE GioChieu(
 	MaGioChieu varchar(10) not null,
 	MaRap varchar(10),
-	GioChieu time,
+	XuatChieu int,
 	CONSTRAINT PK_GioChieu PRIMARY KEY(MaGioChieu),
 	CONSTRAINT FK_MaRap FOREIGN KEY(MaRap) references RAP(MaRap)	
 );
@@ -58,7 +58,7 @@ CREATE TABLE GioChieu(
 CREATE TABLE PhongChieu(
 	MaPhong varchar(10) not null primary key,
 	MaRap varchar(10) not null,
-	TenPhong varchar(50),
+	TenPhong nvarchar(50),
 	TongSoGhe int,
 	constraint FK_MARAP1 foreign key (MaRap) references RAP(MaRap)
 );
@@ -83,7 +83,7 @@ CREATE TABLE LichChieu(
 	MaPhim varchar(10) not null,
 	MaRap varchar(10) not null,
 	MaPhong varchar(10) not null,
-	NgayChieu date,
+	NgayChieu smalldatetime,
 	MaGioChieu varchar(10) not null,
 	GiaVe bigint,
 	SoVeDaBan int,
