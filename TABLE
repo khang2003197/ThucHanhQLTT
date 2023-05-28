@@ -29,7 +29,6 @@ CREATE TABLE Phim(
 	MaTheLoai VARCHAR(10) NOT NULL,
 	NgayKhoiChieu DATE,
 	NgayKetThuc DATE,
-	NuDVChinh VARCHAR(50),
 	NoiDungChinh text,
 	TongChiPhi bigint,
 	TongThu bigint,
