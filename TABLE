@@ -107,5 +107,18 @@ Begin
 	UPDATE LichChieu
 	SET TongTien = (GiaVe * SoVeDaBan); 
 END
+--2/CAP NHAP SO RAP TRONG PHONG CHIEU 
+CREATE TRIGGER SoPhongRap ON PhongChieu AFTER INSERT AS
+BEGIN
+	UPDATE RAP 
+	SET SoPhong = ( select count(MaPhong) from PhongChieu where MaRap= RAP.MaRap) 
+	from RAP join inserted on RAP.MaRap = inserted.MaRap 
+END 
+--3/ CAP NHAP TONG SO GHE CUA MOT RAP 
+CREAT TRIGGER TongSoGheRap ON PhongChieu AFTER INSERT AS 
+BEGIN 
+	UPDATE RAP
+	SET TongSoGhe = RAP.TongSoGhe + (select TongSoGhe from inserted where MaRap = RAP.MaRap) from RAP join inserted on RAP.MaRap=inserted.MaRap
+END
 
 
