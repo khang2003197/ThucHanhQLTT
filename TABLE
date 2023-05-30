@@ -99,11 +99,13 @@ CREATE TABLE LichChieu(
 alter table Ve add constraint fk_MaShow3 foreign key (MaShow) references LichChieu(MaShow);
 
 --trigger 
---1/ cập nhập số vé đã bán 
+--1/ cập nhập số vé đã bán và tổng doanh thu mà lịch chiếu đó đã bán 
 CREATE trigger SoVeDaBan on Ve after INSERT AS
 Begin 
 	UPDATE LichChieu 
 	SET SoVeDaBan = (select count(*) from Ve where Ve.MaShow = LichChieu.MaShow);
+	UPDATE LichChieu
+	SET TongTien = (GiaVe * SoVeDaBan); 
 END
 
 
