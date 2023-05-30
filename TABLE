@@ -120,5 +120,11 @@ BEGIN
 	UPDATE RAP
 	SET TongSoGhe = RAP.TongSoGhe + (select TongSoGhe from inserted where MaRap = RAP.MaRap) from RAP join inserted on RAP.MaRap=inserted.MaRap
 END
-
+--4/ CAP NHAP TONG SO TIEN KHO Co VE THAY DOI PHIM 
+Create trigger TongTienudt on Ve AFTER UPDATE AS 
+BEGIN 
+	UPDATE LichChieu 
+	SET TongTien = (GiaVe * SoVeDaBan) FROM LichChieu join inserted on LichChieu.MaShow = inserted.MaShow 
+	WHERE LichChieu.MaShow = inserted.MaShow 
+END
 
