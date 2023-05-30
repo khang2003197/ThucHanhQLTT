@@ -1,7 +1,7 @@
 CREATE DATABASE CINEMA
 GO
 USE CINEMA 
-GO
+GO--------
 CREATE TABLE HangSX(
 	MaHangSX varchar(10) not null,
 	TenHangSX NVARCHAR(20),
